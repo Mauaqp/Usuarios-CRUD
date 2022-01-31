@@ -1,0 +1,12 @@
+* {
+    font-family: 'Comic Neue', cursive;
+}
+
+.input-box {
+    margin: 10px;
+}
+
+.create-btn {
+    margin: 10px;
+    width: 100px;
+}

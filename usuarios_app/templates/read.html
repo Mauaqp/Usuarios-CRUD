@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real</title>
+</head>
+<body>
+    <main>
+        <div>
+            <h1>All Users</h1>
+        </div>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <td>Id</td>
+                        <td>Full Name</td>
+                        <td>Email</td>
+                        <td>Created At:</td>
+                    </tr>                    
+                </thead>
+                <tbody>
+                    {% for usuario in listaUsuarios : %}
+                    <tr>
+                        <td>{{usuario.id}}</td>
+                        <td>{{usuario.first_name}} {{usuario.last_name}}</td>
+                        <td>{{usuario.email}}</td>
+                        <td>{{usuario.created_at}}</td>
+                    </tr>
+                    {% endfor %}                    
+                </tbody>
+
+            </table>
+        </div>
+        <a href="/users/new">Add a New User</a>
+    </main>
+</body>
+</html>
