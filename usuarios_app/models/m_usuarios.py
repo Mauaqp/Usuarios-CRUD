@@ -26,3 +26,10 @@ class Usuario:
         for u in resultado:
             listaUsuarios.append(cls(u))
         return listaUsuarios
+    
+    #Método para eliminar usuario
+    @classmethod
+    def eliminarUsuario(self, usuario):
+        query = "DELETE FROM users WHERE id = %(id)s;"
+        resultado = connectToMySQL("users_crud").query_db(query, usuario)
+        return resultado

@@ -1,6 +1,15 @@
 * {
     font-family: 'Comic Neue', cursive;
 }
+table {
+    width: 100%;
+    margin: auto;
+}
+thead {
+    background-color: grey;
+    font-size: larger;
+    text-align: center;
+}
 
 .input-box {
     margin: 10px;
@@ -9,4 +18,10 @@
 .create-btn {
     margin: 10px;
     width: 100px;
+}
+
+.actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
