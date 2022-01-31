@@ -15,6 +15,7 @@
     <main>
         <div>
             <h1>All Users</h1>
+            <a method ="GET" href="/">Home</a>
         </div>
         <div>
             <table>
@@ -34,11 +35,13 @@
                         <td>{{usuario.first_name}} {{usuario.last_name}}</td>
                         <td>{{usuario.email}}</td>
                         <td>{{usuario.created_at}}</td>
-                        <td class = "actions"><a href="">Show</a>|<a href="">Edit</a>|<form method ="POST" action="/users/remove/{{usuario.id}}"><button>Delete</button></form></td>
+                        <td class = "actions">
+                            <form method ="GET" action="/users/{{usuario.id}}"><button>Show</button></form>|
+                            <form method ="GET" action="/users/edit/{{usuario.id}}"><button>Edit</button></form>|
+                            <form method ="POST" action="/users/remove/{{usuario.id}}"><button>Delete</button></form></td>
                     </tr>
                     {% endfor %}
                 </tbody>
-
             </table>
         </div>
         <a href="/users/new">Add a New User</a>

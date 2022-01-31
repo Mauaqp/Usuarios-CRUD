@@ -14,8 +14,24 @@
 <body>
     <main>
         <div>
-            <h1>{{usuario.first_name}}</h1>
+            <h1>Usuario {{usuario.id}}</h1>
+            <a method ="GET" href="/read">Home</a>
         </div>
+        <div class = "box">
+            <p>Full name: {{usuario.first_name}} {{usuario.last_name}}</p>
+            <p>Email: {{usuario.email}}</p>
+            <p>Created On: {{usuario.created_at}}</p>
+            <p>Last Updated: {{usuario.updated_at}}</p>
+        </div>
+        <div class="actions">
+            <form method ="GET" action="/users/edit/{{usuario.id}}">
+                <button>Edit</button>
+            </form>
+            <form method ="POST" action="/users/remove/{{usuario.id}}">
+                <button>Delete</button>
+            </form>
+        </div>
+
     </main>
 </body>
 </html>

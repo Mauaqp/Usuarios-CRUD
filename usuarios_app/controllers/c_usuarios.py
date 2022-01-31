@@ -21,9 +21,36 @@ def newUser():
     return render_template( "create.html" )
 
 #Ruta para agregar nuevos usuarios
-@app.route( '/users/<first_name>', methods=['GET'] )
-def readUser():
-    return render_template( "read_user.html" )
+@app.route( '/users/<int:id>')
+def readUser(id):
+    data = {
+        "id" : id
+    }
+    #El "usuario = ..."" es el nombre con el cual se enlazará a la base de datos con el html
+    return render_template( "read_user.html", usuario = Usuario.get_one(data) )
+
+#Ruta para desplegar el usuario que se quiere editar
+@app.route( '/users/edit/<int:id>', methods=["GET"] )
+def despliegaEditar( id ):
+    usuarioAEditar = {
+        "id" : id
+    }
+    resultado = Usuario.get_one( usuarioAEditar )
+    return render_template( "edit.html", usuario = resultado)
+
+#Ruta para EDITAR usuarios existentes
+@app.route( '/users/edit/<int:id>', methods=["POST"])
+def editarUsuario(id):
+    usuarioAEditar = {
+        #indicar el id es IMPORTANTE para que reconozca la correspondencia en la bd
+        "id" : id,
+        "first_name" : request.form["first_name"],
+        "last_name" : request.form["last_name"],
+        "email" : request.form["email"]
+    }
+    resultado = Usuario.editarUsuario(usuarioAEditar)
+    # siempre revisar que la redirección sea correcta y no esté creando o buscando otras 
+    return redirect( "/read" )
 
 #Registrar usuario
 @app.route('/', methods=['POST'])
@@ -33,8 +60,8 @@ def registro ():
     "last_name" : request.form["last_name"],
     "email" : request.form["email"]
     }
-    # session["first_name"] = request.form["first_name"]
-    # session["last_name"] = request.form["last_name"]
+    session["first_name"] = request.form["first_name"]
+    session["last_name"] = request.form["last_name"]
     resultado = Usuario.agregaUsuario( nuevoUsuario )
     return redirect( '/read' )
 

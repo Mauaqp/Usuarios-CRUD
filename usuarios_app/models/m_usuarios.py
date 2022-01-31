@@ -27,9 +27,23 @@ class Usuario:
             listaUsuarios.append(cls(u))
         return listaUsuarios
     
+    #Obtener usuario específico
+    @classmethod
+    def get_one(cls,data):
+        query  = "SELECT * FROM users WHERE id = %(id)s;"
+        resultado = connectToMySQL('users_crud').query_db(query,data)
+        return cls(resultado[0])
+
     #Método para eliminar usuario
     @classmethod
     def eliminarUsuario(self, usuario):
         query = "DELETE FROM users WHERE id = %(id)s;"
         resultado = connectToMySQL("users_crud").query_db(query, usuario)
+        return resultado
+
+    #Método para editar usuario
+    @classmethod
+    def editarUsuario(self, usuarioAEditar):
+        query = "UPDATE users SET first_name = %(first_name)s, last_name = %(last_name)s, email = %(email)s WHERE id = %(id)s;"
+        resultado = connectToMySQL( "users_crud" ).query_db( query, usuarioAEditar )
         return resultado
